@@ -1,0 +1,21 @@
+@page "/menu"
+@inject MenuService MenuService
+
+
+<h3>Juice Menu</h3>
+
+<p>Welcome to the best juice bar in town! Take your pick:</p>
+
+@if (MenuService.GetMenuItems().Count == 0)
+{
+    <p>No menu items available.</p>
+}
+else
+{
+    <ul>
+        @foreach (var item in MenuService.GetMenuItems())
+        {
+            <li>@item.Name - $@item.Price</li>
+        }
+    </ul>
+}

@@ -1,0 +1,54 @@
+using BlazorApp.Components;
+using Microsoft.Extensions.DependencyInjection;
+using System.Threading.Tasks;
+namespace BlazorApp
+{
+@page "/admin"
+@inject MenuService MenuService
+
+
+@code {
+    private MenuItem newItem = new MenuItem();
+
+    private void AddMenuItem()
+    {
+        MenuService.AddMenuItem(newItem);
+        newItem = new MenuItem(); // Reset the form
+    }
+
+    private void RemoveMenuItem(MenuItem item)
+    {
+        MenuService.RemoveMenuItem(item);
+    }
+}
+
+<h3>Admin Dashboard</h3>
+
+<p>Manage your menu items below:</p>
+
+<!-- form to add a new items -->
+<div>
+    <label>Juice Name:</label>
+    <input @bind="newItem.Name" />
+
+    <label>Price:</label>
+    <input @bind="newItem.Price" type="number" step="0.01" />
+
+    <button @onclick="AddMenuItem">Add Item</button>
+</div>
+
+<!-- Display existing menu items -->
+@if (MenuService.GetMenuItems().Count == 0)
+{
+    <p>No menu items available.</p>
+}
+else
+{
+    <ul>
+        @foreach (var item in MenuService.GetMenuItems())
+        {
+            <li>@item.Name - $@item.Price <button @onclick="() => RemoveMenuItem(item)">Remove</button></li>
+        }
+    </ul>
+}
+}
