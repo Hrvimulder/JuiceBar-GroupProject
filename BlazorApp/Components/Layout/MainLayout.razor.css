@@ -1,3 +1,4 @@
+/* Container for the entire page layout */
 .page {
     position: relative;
     display: flex;
@@ -5,45 +6,57 @@
     /* Keep column layout to make the sidebar sit on top */
 }
 
+/* Main content area */
 main {
     flex: 1;
+    /* Allow main content to take up remaining space */
 }
 
+/* Sidebar styling */
 .sidebar {
     background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
     width: 100%;
     /* Make the sidebar full width */
 }
 
-
+/* Styling for links and buttons in the top row */
 .top-row ::deep a,
 .top-row ::deep .btn-link {
     white-space: nowrap;
     margin-left: 1.5rem;
     text-decoration: none;
+    /* Style links and buttons in the top row */
 }
 
+/* Hover effect for links and buttons in the top row */
 .top-row ::deep a:hover,
 .top-row ::deep .btn-link:hover {
     text-decoration: underline;
+    /* Add underline on hover for links and buttons in the top row */
 }
 
+/* Styling for the first link in the top row */
 .top-row ::deep a:first-child {
     overflow: hidden;
     text-overflow: ellipsis;
+    /* Handle overflow for the first link in the top row */
 }
 
+/* Media query for small screens */
 @media (max-width: 640.98px) {
     .top-row {
         justify-content: space-between;
+        /* Adjust top row layout for small screens */
     }
 
     .top-row ::deep a,
     .top-row ::deep .btn-link {
         margin-left: 0;
+        /* Remove left margin for links and buttons in the top row on small screens */
     }
 }
 
+/* Media query for larger screens */
 @media (min-width: 641px) {
     .page {
         flex-direction: column;
@@ -64,15 +77,18 @@ main {
         flex: 1;
         text-align: right;
         width: 0;
+        /* Adjust the first link in the top row for authenticated users */
     }
 
     .top-row,
     article {
         padding-left: 0 !important;
         padding-right: 0 !important;
+        /* Remove left and right padding for top row and article */
     }
 }
 
+/* Styling for the Blazor error UI */
 #blazor-error-ui {
     color-scheme: light only;
     background: lightyellow;
@@ -87,11 +103,14 @@ main {
     position: fixed;
     width: 100%;
     z-index: 1000;
+    /* Style the Blazor error UI */
 }
 
+/* Styling for the dismiss button in the Blazor error UI */
 #blazor-error-ui .dismiss {
     cursor: pointer;
     position: absolute;
     right: 0.75rem;
     top: 0.5rem;
+    /* Style the dismiss button for the Blazor error UI */
 }
