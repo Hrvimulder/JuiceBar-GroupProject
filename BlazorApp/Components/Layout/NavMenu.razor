@@ -2,27 +2,32 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="">BlazorApp</a>
 
-        <!-- Toggler for smaller screens -->
         <input type="checkbox" title="Navigation menu" class="navbar-toggler" />
-
-        <!-- Navbar items that will be toggled on mobile -->
         <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
             <nav class="nav flex-column flex-md-row">
                 <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                        <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+                    <NavLink class="nav-link" href="/" Match="NavLinkMatch.All">
+                        Home
                     </NavLink>
                 </div>
-
                 <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="menudisplay">
-                        <span class="bi bi-menu-button" aria-hidden="true"></span> Menu Display
+                    <NavLink class="nav-link" href="/menudisplay">
+                        Menu Display
                     </NavLink>
                 </div>
-
                 <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="admin">
-                        <span class="bi bi-AdminDashboard-button" aria-hidden="true"></span> Admin Dashboard
+                    <NavLink class="nav-link" href="/admin">
+                        Admin Dashboard
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="/menu">
+                        Menu
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="/cart">
+                        Cart
                     </NavLink>
                 </div>
             </nav>

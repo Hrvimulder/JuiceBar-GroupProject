@@ -1,12 +1,10 @@
 using System.Collections.Generic;
-using Microsoft.Extensions.DependencyInjection;
-using System.Threading.Tasks;
 
 public class MenuService
 {
     private List<MenuItem> menuItems = new List<MenuItem>
     {
-        new MenuItem { Name = "Mango Smoothie", Price = 4.99m},
+        new MenuItem { Name = "Mango Smoothie", Price = 4.99m },
         new MenuItem { Name = "Berry Blast", Price = 5.49m }
     };
 
@@ -21,7 +19,6 @@ public class MenuService
     {
         menuItems.Remove(item);
     }
-
 }
 
 public class MenuItem

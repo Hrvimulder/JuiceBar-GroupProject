@@ -1,0 +1,49 @@
+@page "/cart"
+@inject CartService CartService
+
+<h3>Your Cart</h3>
+
+@if (CartService.GetCartItems().Count == 0)
+{
+    <p>Your cart is empty.</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Juice Name</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in CartService.GetCartItems())
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                    <td>
+                        <button @onclick="() => RemoveFromCart(item)">Remove</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <p>
+        <strong>Total: </strong>@CartService.GetCartItems().Sum(x => x.Price)
+    </p>
+    <button @onclick="ClearCart">Clear Cart</button>
+}
+
+@code {
+    private void RemoveFromCart(MenuItem item)
+    {
+        CartService.RemoveFromCart(item);
+    }
+
+    private void ClearCart()
+    {
+        CartService.ClearCart();
+    }
+}
