@@ -16,6 +16,7 @@ public class Program
         builder.Services.AddRazorComponents()
             .AddInteractiveServerComponents();
         builder.Services.AddScoped<MenuService>();
+        builder.Services.AddScoped<CartService>();
 
         var app = builder.Build();
 

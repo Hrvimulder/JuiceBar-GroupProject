@@ -1,0 +1,33 @@
+@page "/menu"
+@inject MenuService MenuService
+@inject CartService CartService
+
+<h3>Menu</h3>
+
+<p>Total items in cart: @CartService.GetCartItems().Count</p>
+
+@if (MenuService.GetMenuItems().Count == 0)
+{
+    <p>No menu items available.</p>
+}
+else
+{
+    <ul>
+        @foreach (var item in MenuService.GetMenuItems())
+        {
+            <li>
+                @item.Name - $@item.Price
+                <button @onclick="() => AddToCart(item)">Add to Cart</button>
+            </li>
+        }
+    </ul>
+}
+
+@code {
+    private void AddToCart(MenuItem item)
+    {
+        CartService.AddToCart(item);
+        // Пишет в *серверный* вывод, см. TERMINAL
+        Console.WriteLine($"Server log: Added {item.Name}");
+    }
+}
