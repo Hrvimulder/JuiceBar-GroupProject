@@ -67,7 +67,7 @@ main {
         width: 100%;
         /* Sidebar still takes full width */
         height: auto;
-        /* No need to set height to 100vh anymore */
+
         position: sticky;
         top: 0;
         /* Ensure the sidebar appears below the header */
