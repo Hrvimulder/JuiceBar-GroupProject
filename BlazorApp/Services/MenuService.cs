@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-public class MenuService
+public class MenuService // Luokka tuotteiden hallinnointia varten
 {
     private List<MenuItem> menuItems = new List<MenuItem>
     {
@@ -21,7 +21,7 @@ public class MenuService
     }
 }
 
-public class MenuItem
+public class MenuItem // Samassa filessä tuoteolion luokka.
 {
     public string Name { get; set; } = "";
     public decimal Price { get; set; }
