@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-public class MenuService // Luokka tuotteiden hallinnointia varten
+public class AdminService // Luokka tuotteiden hallinnointia varten
 {
     private List<MenuItem> menuItems = new List<MenuItem>
     {

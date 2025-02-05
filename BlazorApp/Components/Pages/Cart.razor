@@ -1,49 +1,79 @@
 @page "/cart"
+@rendermode InteractiveServer
 @inject CartService CartService
 
-<h3>Your Cart</h3>
+<div class="container mt-5">
+    <h3 class="text-center mb-4"><i class="bi bi-cart-fill"></i> Your Cart</h3>
 
-@if (CartService.GetCartItems().Count == 0)
-{
-    <p>Your cart is empty.</p>
-}
-else
-{
-    <table>
-        <thead>
-            <tr>
-                <th>Juice Name</th>
-                <th>Price</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in CartService.GetCartItems())
-            {
+    @if (CartService.GetCartItems().Count == 0)
+    {
+        <div class="alert alert-warning text-center" role="alert">
+            Your cart is empty.
+        </div>
+    }
+    else
+    {
+        <table class="table table-striped text-center">
+            <thead class="table-dark">
                 <tr>
-                    <td>@item.Name</td>
-                    <td>@item.Price</td>
-                    <td>
-                        <button @onclick="() => RemoveFromCart(item)">Remove</button>
-                    </td>
+                    <th>Juice Name</th>
+                    <th>Price</th>
+                    <th>Actions</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-    <p>
-        <strong>Total: </strong>@CartService.GetCartItems().Sum(x => x.Price)
-    </p>
-    <button @onclick="ClearCart">Clear Cart</button>
-}
+            </thead>
+            <tbody>
+                @foreach (var item in CartService.GetCartItems())
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>$@item.Price</td>
+                        <td>
+                            <button class="btn btn-danger btn-sm" @onclick="() => RemoveFromCart(item)">
+                                <i class="bi bi-trash"></i> Remove
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="text-center mt-3">
+            <h4 class="fw-bold">Total: $@CartService.GetCartItems().Sum(x => x.Price)</h4>
+            <button class="btn btn-warning mt-3" @onclick="ClearCart">
+                <i class="bi bi-trash3-fill"></i> Clear Cart
+            </button>
+        </div>
+    }
+</div>
 
 @code {
+    private List<MenuItem> cartItems = new();
+
+    protected override void OnInitialized()
+    {
+        cartItems = CartService.GetCartItems();
+        CartService.OnCartChanged += UpdateCart;
+    }
+
+    private void UpdateCart()
+    {
+        cartItems = CartService.GetCartItems();
+        InvokeAsync(StateHasChanged);
+    }
+
     private void RemoveFromCart(MenuItem item)
     {
+        Console.WriteLine($"🗑 Removed: {item.Name}");
         CartService.RemoveFromCart(item);
     }
 
     private void ClearCart()
     {
         CartService.ClearCart();
+    }
+
+    public void Dispose()
+    {
+        CartService.OnCartChanged -= UpdateCart;
     }
 }

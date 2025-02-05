@@ -15,7 +15,7 @@ public class Program
         // Add services to the container.
         builder.Services.AddRazorComponents()
             .AddInteractiveServerComponents();
-        builder.Services.AddScoped<MenuService>();
+        builder.Services.AddScoped<AdminService>();
         builder.Services.AddScoped<CartService>();
 
         var app = builder.Build();

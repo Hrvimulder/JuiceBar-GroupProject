@@ -1,19 +1,19 @@
 @page "/menudisplay"
-@inject MenuService MenuService
+@inject AdminService AdminService
 
 
 <h3>Juice Menu</h3>
 
 <p>Welcome to the best juice bar in town! Take your pick:</p>
 
-@if (MenuService.GetMenuItems().Count == 0)
+@if (AdminService.GetMenuItems().Count == 0)
 {
     <p>No menu items available.</p>
 }
 else
 {
     <ul>
-        @foreach (var item in MenuService.GetMenuItems())
+        @foreach (var item in AdminService.GetMenuItems())
         {
             <li>@item.Name - $@item.Price</li>
         }

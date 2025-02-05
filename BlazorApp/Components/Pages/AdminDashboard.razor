@@ -1,5 +1,6 @@
 @page "/admin"
-@inject MenuService MenuService
+@rendermode InteractiveServer
+@inject AdminService AdminService
 
 <h3>Admin Dashboard</h3>
 
@@ -17,14 +18,14 @@
     <button @onclick="AddMenuItem">Add Item</button>
 </div>
 
-@if (MenuService.GetMenuItems().Count == 0)
+@if (AdminService.GetMenuItems().Count == 0)
 {
     <p>No menu items available.</p>
 }
 else
 {
     <ul>
-        @foreach (var item in MenuService.GetMenuItems())
+        @foreach (var item in AdminService.GetMenuItems())
         {
             <li>
                 @item.Name - $@item.Price
@@ -39,12 +40,12 @@ else
 
     private void AddMenuItem()
     {
-        MenuService.AddMenuItem(newItem);
-        newItem = new MenuItem(); // Сброс формы
+        AdminService.AddMenuItem(newItem);
+        newItem = new MenuItem(); // Reset forms
     }
 
     private void RemoveMenuItem(MenuItem item)
     {
-        MenuService.RemoveMenuItem(item);
+        AdminService.RemoveMenuItem(item);
     }
 }
